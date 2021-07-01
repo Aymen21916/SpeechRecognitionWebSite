@@ -1,0 +1,11 @@
+librosa
+torch
+Flask
+transformers
+Werkzeug
+datasets
+numpy
+torchaudio
+dataclasses
+packaging
+torch

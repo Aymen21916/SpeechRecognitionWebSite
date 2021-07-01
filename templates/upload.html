@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Upload Audio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" type="text/css" href="/static/header_file.css">
+  <link rel="stylesheet" type="text/css" href="/static/footer_file.css">
+  <link rel="stylesheet" type="text/css" href="/static/main.css">
+  <link rel="stylesheet" type="text/css" href="/static/audio_to_text.css">
+  <script src="/static/recorder.js"></script>
+  <script src="/static/audiodisplay.js"></script>
+  <script src="/static/main.js"></script>
+  <script src="/static/recorderWorker.js"></script>
+  <!-- <script src="/static/recorder.js"></script>
+  <script src="/static/audiodisplay.js"></script>
+  <script src="/static/main.js"></script>
+  <script src="/static/recorderWorker.js"></script> -->
+
+</head>
+<body style="background-color:rgb(127, 195, 255);">
+{% include "header.html" %}
+
+<div id="loader">
+  <p class="glow">SPEECH to TEXT</p>
+</div>
+
+<div id="loader1">
+  <div class="row " style="position:relative;">
+    <div class="column1">
+      <h2>Upload Audio</h2>
+      <p>
+      <form method="post" enctype="multipart/form-data">
+        <p class="text-light">
+          <input type="file" name="file" accept="audio/*" id="recorder">
+          <button class="btn btn-success" id="button" type="submit">
+            Recognize
+          </button>
+        </p>
+      </form>
+      </p>
+      <p id="playaudio">
+      <label class="mb-8 leading-relaxed" for="player" id="label">Your audio file if you wanna hear it</label>
+      <audio id="player" src="upload/Audio.wav" controls></audio>
+      </p>
+    </div>
+    <div class="column2">
+      <h2>Audio Prediction</h2>
+      <p class="glow" id="output" style="font-size: 20px;">
+        <strong>{{Prediction}}</strong>
+      </p>
+    </div>
+  </div>
+</div>
+{% extends "footer.html" %}
+{% block footer%}fixed{% endblock %}
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/8.6.8/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+<script>
+const recorder = document.getElementById('recorder');
+const player = document.getElementById('player');
+recorder.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const url = URL.createObjectURL(file);
+    player.src = url;
+  });
+</script>
+</body>
+
+</html>
